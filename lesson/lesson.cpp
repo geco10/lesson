@@ -1,12 +1,12 @@
 #include<cstdio>
 #include<vector>
 
-int findIndex(int a,std::vector<int>arr) {
+int findIndex(int a,std::vector<int>&arr) {
 	for (int i = 0; i < arr.size(); ++i) {
 		if (arr[i] == a) return i;
 	}
 }
-int findMin(std::vector<int>arr) {
+int findMin(std::vector<int>&arr) {
 	int min = arr[0];
 	for (int i = 1; i < arr.size(); ++i) {
 		if (min> arr[i])min=arr[i];
