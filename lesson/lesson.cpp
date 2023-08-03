@@ -73,6 +73,18 @@ int main() {
 							cursor.move(a);
 						}
 						else
-							if (c == 0)break;
+							if (c == -2) {
+								char c;
+								char bs;
+								printf("   New cursor:");
+								scanf_s("\n%c",&c);
+								
+								printf("   New blank space:");
+								scanf_s("\n%c", &bs);
+								cursor.changeCursor(c,bs);
+								puts("");
+							}
+							else
+							  if (c == 0)break;
 	}
 }

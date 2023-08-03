@@ -8,8 +8,8 @@ Cursor::Cursor(int n)
 void Cursor::print() const
 {
 	for(int i=0;i<n;++i){
-		if (i == in)printf("1 ");
-		else printf("0 ");
+		if (i == in)printf("%c ",c);
+		else printf("%c ",bs);
 	}
 }
 
@@ -21,4 +21,10 @@ int Cursor::getIndex() const
 void Cursor::move(int change)
 {
 	in += change;
+}
+
+void Cursor::changeCursor(char c, char bs)
+{
+	this->c = c;
+	this->bs = bs;
 }
