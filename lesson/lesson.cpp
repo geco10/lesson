@@ -1,12 +1,13 @@
 #include<cstdio>
 #include<vector>
+#include"Cursor.h"
 
-int findIndex(int a,std::vector<int>&arr) {
+int findIndex(int a,const std::vector<int>&arr) {
 	for (int i = 0; i < arr.size(); ++i) {
 		if (arr[i] == a) return i;
 	}
 }
-int findMin(std::vector<int>&arr) {
+int findMin(const std::vector<int>&arr) {
 	int min = arr[0];
 	for (int i = 1; i < arr.size(); ++i) {
 		if (min> arr[i])min=arr[i];
@@ -17,14 +18,12 @@ int main() {
 	int n;
 	printf("Enter dimension:");
 	scanf_s("%i", &n);
+	Cursor cursor(n);
 	std::vector<int> arr(n);
-	std::vector<int> a(n);
 	printf("Enter numbers:");
 	for (int i = 0; i < n; ++i) {
-		scanf_s("%i ", &arr[i]);
-		a[i] = 0;
+		scanf_s("%i ",&arr[i]);
 	}
-	a[0] = 1;
 	puts("");
 	puts("= = = = = = = = = = =");
 	puts(" = = = = = = = = = = ");
@@ -34,29 +33,25 @@ int main() {
 			printf("%i ", arr[i]);
 		}
 		puts("");
-		for (int i = 0; i < n; ++i) {
-			printf("%i ", a[i]);
-		}
+		cursor.print();
 		puts("");
 		printf("  Enter comand:");
 		int c;
 		scanf_s("%i", &c);
 		if (c == 2) {
-			int i = findIndex(1, a);
-			a[i] = 0;
-			a[i + 1] = 1;
+			int i = cursor.getIndex();
+			cursor.move(1);
 			puts("");
 		}
 		else
 			if (c == 1) {
-				int i = findIndex(1, a);
-				a[i] = 0;
-				a[i - 1] = 1;
+				int i = cursor.getIndex();
+				cursor.move(-1);
 				puts("");
 			}
 			else
 				if (c == -1) {
-					int i = findIndex(1, a);
+					int i = cursor.getIndex();
 					int b;
 					printf("       Enter new element:");
 					scanf_s("%i", &b);
@@ -72,10 +67,10 @@ int main() {
 					}
 					else
 						if (c == 3) {
-							int j = findIndex(1, a);
+							int j = cursor.getIndex();
 							int i = findIndex(findMin(arr), arr);
-							a[i] = 1;
-							a[j] = 0;
+							int a = i - j;
+							cursor.move(a);
 						}
 						else
 							if (c == 0)break;
